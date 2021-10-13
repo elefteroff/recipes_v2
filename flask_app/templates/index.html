@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration and Login Page</title>
+</head>
+<body>
+    <form action="/user/create" method="post">
+        {% for message in get_flashed_messages(category_filter='error_first_name') %}
+            <p>{{ message }}</p>
+        {% endfor %}
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name">
+        {% for message in get_flashed_messages(category_filter='error_last_name') %}
+            <p>{{ message }}</p>
+        {% endfor %}
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name">
+        {% for message in get_flashed_messages(category_filter='error_email') %}
+            <p>{{ message }}</p>
+        {% endfor %}
+        <label for="email">Email</label>
+        <input type="text" name="email">
+        {% for message in get_flashed_messages(category_filter='error_password') %}
+            <p>{{ message }}</p>
+        {% endfor %}
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        {% for message in get_flashed_messages(category_filter='error_confirm_password') %}
+            <p>{{ message }}</p>
+        {% endfor %}
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password">
+        <button>Create User</button>
+    </form>
+    <form action="/user/process_login" method="post">
+        {% for message in get_flashed_messages(category_filter='user_input') %}
+            <p>{{message}}</p>
+        {% endfor %}
+        <label for="user_input">Email</label>
+        <input type="text" name="user_input">
+        {% for message in get_flashed_messages(category_filter='pw') %}
+            <p>{{message}}</p>
+        {% endfor %}
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        <button>Login</button>
+    </form>
+</body>
+</html>

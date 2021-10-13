@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1 value={{id}}>Welcome {{user.first_name}}!</h1>
+    <h6>These are the recipes</h6>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Under 30 Minutes?</th>
+            <th>Actions</th>
+        </tr>
+        {% for recipe in all_recipes %}
+        <tr>
+            <td>{{ recipe['name'] }}</td>
+            <td>{{ recipe['under_30_min'] }}</td>
+            <td>
+                <a href="/recipes/{{recipe.id}}">view instructions</a>
+                {% if recipe["user_id"] == session["id"] %}
+                <a href="/recipes/edit/{{recipe.id}}">edit</a>
+                <a href="/recipe/delete/{{recipe.id}}">delete</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+        <a href="/recipes/new">Create</a>
+        <a href="/logout">Logout</a>
+</body>
+</html>
